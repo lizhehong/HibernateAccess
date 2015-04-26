@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-26 8:21:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.ITHong.domain.User" table="USER">
+        <id name="uid" type="java.lang.Long">
+            <column name="UID" length="5"/>
+            <generator class="increment" />
+        </id>
+        <property name="username" type="java.lang.String" length="20">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String" length="10">
+            <column name="PASSWORD" />
+        </property>
+        <property name="sex" type="java.lang.String" length="1">
+            <column name="SEX" />
+        </property>
+        <property name="phone" type="java.lang.String" length="11">
+            <column name="PHONE" />
+        </property>
+        <property name="email" type="java.lang.String" length="20">
+            <column name="EMAIL" />
+        </property>
+        <set name="rSet" table="user_role" >
+            <key>
+                <column name="UID" />
+            </key>
+            <many-to-many class="cn.ITHong.domain.Role" column="RID"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-26 8:21:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.ITHong.domain.Permission" table="PERMISSION">
+        <id name="pid" type="java.lang.Long" access="field">
+            <column name="PID" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String" length="5">
+            <column name="NAME" />
+        </property>
+        <property name="desciription" type="java.lang.String" length="100">
+            <column name="DESCIRIPTION" />
+        </property>
+        <set name="rSet" table="permission_role" >
+            <key>
+                <column name="PID" />
+            </key>
+            <many-to-many class="cn.ITHong.domain.Role" column="RID"/>
+        </set>
+    </class>
+</hibernate-mapping>
