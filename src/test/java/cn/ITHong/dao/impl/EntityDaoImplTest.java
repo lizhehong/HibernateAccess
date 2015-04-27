@@ -55,9 +55,17 @@ public class EntityDaoImplTest {
 		user.setEmail("111");
 		uDao.updateEntry(user);
 	}
-	 
+	
 	public void testDeleteEntry(){
 		uDao.deleteEntity(User.class, 2L);
 	}
-	
+	/**
+	 * 测试用户登陆
+	 * 没有用户返回空
+	 * */
+
+	public void testFindEntity(){
+		User user = uDao.findEntity(User.class, "小hong", "99");
+		assertNotNull(user);
+	}
 }

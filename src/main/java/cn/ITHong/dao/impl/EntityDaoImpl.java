@@ -13,6 +13,9 @@ import java.util.List;
 
 
 
+
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -70,5 +73,21 @@ public class EntityDaoImpl<T> extends HibernateUtils implements EntityDao<T>{
 		transaction.commit();
 		
 	}
+	public <T> T findEntity(Class<T> T, String username, String password) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		
+		Query query = session.createQuery("from User where username=:username and password=:password");
+		query.setString("username", username);
+		query.setString("password", password);
+		List<T> tList = query.list();
+		transaction.commit();
+		if(tList.size()>0&&tList!=null)
+			return tList.get(0);
+			else{
+				return null;
+			}
+	}
+
 
 }
